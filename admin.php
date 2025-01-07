@@ -101,22 +101,20 @@ if (!isset($_SESSION['username'])) {
     </div>
 </section>
 <!-- content end -->
-    <!-- footer begin -->
-    <footer class="text-center p-5 bg-danger-subtle">
-    <div>
-        <a href="https://www.instagram.com/udinusofficial"
-        ><i class="bi bi-instagram h2 p-2 text-dark"></i
-        ></a>
-        <a href="https://twitter.com/udinusofficial"
-        ><i class="bi bi-twitter h2 p-2 text-dark"></i
-        ></a>
-        <a href="https://wa.me/+62812685577"
-        ><i class="bi bi-whatsapp h2 p-2 text-dark"></i
-        ></a>
-    </div>
-    <div>helena sedunia &copy; 2024</div>
+
+<!--footer begin-->
+<footer class="text-center p-5 bg-danger-subtle">
+        <div>
+            <a href="https://www.instagram.com/f1"><i class="bi bi-instagram h2 p-2 text-dark"></i></a>
+            <a href="https://x.com/F1"><i class="bi bi-twitter-x h2 p-2 text-dark"></i></a>
+            <a href="https://www.youtube.com/user/Formula1"><i class="bi bi-youtube h2 p-2 text-dark"></i></a>
+            <a href="https://www.facebook.com/Formula1"><i class="bi bi-facebook h2 p-2 text-dark"></i></a>
+        </div>
+        <div>Copyright - helena sedunia &copy; 2024</div>
+
     </footer>
-    <!-- footer end -->
+    <!--footer end-->
+
     <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
