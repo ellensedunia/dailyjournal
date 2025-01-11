@@ -15,7 +15,7 @@ if (!isset($_SESSION['username']) || ($_SESSION['role'] != 'admin' && $_SESSION[
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>My Daily Journal | Admin</title>
+    <title>My Daily Journal | User</title>
     <link rel="icon" href="img/logo.png" />
     <link
     rel="stylesheet"
@@ -65,13 +65,13 @@ if (!isset($_SESSION['username']) || ($_SESSION['role'] != 'admin' && $_SESSION[
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-dark">
             <li class="nav-item">
-                <a class="nav-link" href="admin.php?page=dashboard">Dashboard</a>
+                <a class="nav-link" href="user.php?page=dashboard">Dashboard</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="admin.php?page=article">Article</a>
+                <a class="nav-link" href="user.php?page=article">Article</a>
             </li> 
             <li class="nav-item">
-                <a class="nav-link" href="admin.php?page=gallery">Gallery</a>
+                <a class="nav-link" href="user.php?page=gallery">Gallery</a>
             </li> 
             <li class="nav-item">
                 <a class="nav-link fw-bold" href="index.php">Homepage</a>

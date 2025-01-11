@@ -8,7 +8,7 @@ include "koneksi.php";
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>f1 - ( helena's version)</title>
-    <link rel="icon" href="img/f1.jpg">
+    <link rel="icon" href="img/img9.jpg">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   </head>
@@ -17,7 +17,7 @@ include "koneksi.php";
     <!--nav begin-->
     <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
         <div class="container">
-          <a class="navbar-brand" href=""><img src="img/img9.jpg" alt="" width="10%">Formula 1 Journal</a>
+          <a class="navbar-brand" href=""><img src="" alt="" width="10%">Formula 1 Journal</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -116,20 +116,17 @@ include "koneksi.php";
         <div class="container">
             <h1 class="fw-bold display pb-3">gallery</h1>
             <div id="carouselExample" class="carousel slide">
+            <?php
+            $sql = "SELECT * FROM gallery WHERE role = 'user' ORDER BY tanggal DESC";
+            $hasil = $conn->query($sql); 
+
+            while($row = $hasil->fetch_assoc()){
+            ?>
                 <div class="carousel-inner">
                   <div class="carousel-item active">
-                    <img src="img/img1.jpg" class="d-block w-100" alt="...">
+                    <img src="img/<?= $row["gambar"]?>" class="card-img-top" alt="..." />
                   </div>
-                  <div class="carousel-item">
-                    <img src="img/img3.jpg" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="img/img6.jpg" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="img/img7.jpg" class="d-block w-100" alt="...">
-                  </div>
-                </div>
+                
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                   <span class="visually-hidden">Previous</span>
@@ -138,8 +135,11 @@ include "koneksi.php";
                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
                   <span class="visually-hidden">Next</span>
                 </button>
+            <?php
+              }
+            ?> 
+                </div>
             </div>
-
         </div>
     </section>
     <!--gallery end-->

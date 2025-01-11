@@ -5,9 +5,15 @@ session_start();
 //menyertakan code dari file koneksi
 include "koneksi.php";
 
-//cek jika sudah ada user yang login arahkan ke halaman admin
+//cek jika sudah ada user yang login arahkan ke halaman sesuai role
 if (isset($_SESSION['username'])) {
-  header("location:admin.php");
+  if ($_SESSION['role'] == 'admin') {
+    header("location:admin.php");
+    exit();
+  } else if ($_SESSION['role'] == 'user') {
+    header("location:user.php");
+    exit();
+  }
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -17,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $password = md5($_POST['password']);
 
 //prepared statement
-$stmt = $conn->prepare("SELECT username FROM user WHERE username=? AND password=?");
+$stmt = $conn->prepare("SELECT username, role FROM user WHERE username=? AND password=?");
 
 //parameter binding
 $stmt->bind_param("ss", $username, $password); //username dan password string
@@ -35,12 +41,36 @@ $row = $hasil->fetch_array(MYSQLI_ASSOC);
 if (!empty($row)) {
   //jika ada, simpan variabel username pada session
   $_SESSION['username'] = $row['username'];
+  $_SESSION['role'] = $row['role'];
 
-  //mengalihkan ke halaman admin
-  header("location:admin.php");
+  // Ambil foto profil dari database
+  $stmt_foto = $conn->prepare("SELECT foto FROM user WHERE username=?");
+  $stmt_foto->bind_param("s", $username); // Binding username
+  $stmt_foto->execute();
+  $result_foto = $stmt_foto->get_result();
+  
+  // Jika foto ditemukan, simpan di session
+  if ($result_foto->num_rows > 0) {
+    $foto_row = $result_foto->fetch_assoc();
+    $_SESSION['foto'] = $foto_row['foto']; // Menyimpan nama file foto ke session
+  } else {
+    $_SESSION['foto'] = 'pp.jpg'; // Jika tidak ada foto, set ke gambar default
+  }
+
+  // Menutup query foto
+  $stmt_foto->close();
+
+  //mengalihkan ke halaman sesuai role
+  if ($row['role'] == 'admin') {
+    header("location:admin.php");
+  }
+  else if ($row['role'] == 'user') {
+    header("location:user.php");
+  }
 } else {
   //jika tidak ada (gagal), alihkan kembali ke halaman login
-  header("location:login.php");
+  echo "<script>alert('Username atau Password salah'); window.location.href = 'login.php';</script>";
+  //header("location:login.php");
 }
 
 //menutup koneksi database
